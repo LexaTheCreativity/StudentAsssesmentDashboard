@@ -5,7 +5,7 @@ export default function CoursesScreen()
 {
     return (
         <View style={styles.container}>
-            <Text>Hello, World!</Text>
+            <Text style={styles.text}>Hello, World!</Text>
         </View>
     )
 }
