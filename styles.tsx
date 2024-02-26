@@ -16,6 +16,15 @@ const styles = StyleSheet.create({
         textAlign:"center",
         width:300,
     },
+    btn: {
+        width:55,
+        padding: 15,
+        borderRadius: 8,
+        margin: 20,
+        borderWidth: 0,
+        backgroundColor:'#57c926',
+        alignSelf: 'center',
+    },
     text: {
         color: '#fff',
         fontWeight: 'bold',

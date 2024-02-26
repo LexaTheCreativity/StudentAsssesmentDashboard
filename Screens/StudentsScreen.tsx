@@ -4,19 +4,20 @@ import {StudentType, StudentTypeDefault} from "../studentType";
 import {useState, useEffect} from "react";
 import {collection, getDocs} from 'firebase/firestore';
 import {db} from '../firebaseConfig';
+import {AntDesign} from "@expo/vector-icons";
 
-export default function StudentsScreen({navigation})
-{
+export default function StudentsScreen({navigation}) {
     const [students, setStudents] = useState<StudentType[]>([StudentTypeDefault]);
 
     useEffect(() => {
         const fetch = async () => {
-            const collectionRef = collection(db, 'students');
+            const collectionRef = collection(db, 'students2');
             const documentsSnap = await getDocs(collectionRef);
 
             setStudents(documentsSnap.docs.map((entry) => ({
                 DOB: entry.data().DOB.toDate().toLocaleString(
-                    'en-GB', {month: "short", day: "numeric", year: "numeric"
+                    'en-GB', {
+                        month: "short", day: "numeric", year: "numeric"
                     }),
                 Grade: entry.data().Grade,
                 Score: entry.data().Score,
@@ -27,12 +28,16 @@ export default function StudentsScreen({navigation})
             })));
         };
 
-        fetch().then().catch(() => {console.log('Error fetching data.')});
+        fetch().then().catch(() => {
+            console.log('Error fetching data.')
+        });
     }, []);
 
     const renderItem = ({item: student}) => (
         <View style={styles.container}>
-            <Pressable style={styles.box} onPress={() => {}}>
+            <Pressable style={styles.box} onPress={() => {
+                navigation.navigate('Student Info', {student: student})
+            }}>
                 <Text style={styles.text}>
                     {student.lName}, {student.fName}
                 </Text>
@@ -43,10 +48,14 @@ export default function StudentsScreen({navigation})
     return (
         <View style={styles.container}>
             <FlatList
+                contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}
                 data={students}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
             />
+            <Pressable style={styles.btn}>
+                <AntDesign name="adduser" size={26} color="white"/>
+            </Pressable>
         </View>
     )
 }
