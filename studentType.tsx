@@ -1,5 +1,6 @@
 
 type StudentType = {
+    id: string,
     DOB: Date,
     Grade: string,
     Score: number,
@@ -10,6 +11,7 @@ type StudentType = {
 };
 
 const StudentTypeDefault: StudentType = {
+    id: "",
     DOB: new Date(),
     Grade: "",
     Score: 0,

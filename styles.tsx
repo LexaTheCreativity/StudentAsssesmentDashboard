@@ -28,7 +28,18 @@ const styles = StyleSheet.create({
     text: {
         color: '#fff',
         fontWeight: 'bold',
-    }
+        textAlign: 'center',
+    },
+    input: {
+        margin: 4,
+        borderWidth: 0,
+        borderRadius: 8,
+        color: '#fff',
+        backgroundColor:'#c78f26',
+        fontWeight: 'bold',
+        padding: 6,
+        width: '80%',
+    },
 });
 
 export {styles};
