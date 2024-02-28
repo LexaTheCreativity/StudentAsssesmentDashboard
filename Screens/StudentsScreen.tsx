@@ -29,9 +29,9 @@ export default function StudentsScreen({navigation}) {
         fetch().then().catch(() => {
             console.log('Error fetching data.')
         });
-    }, []);
+    }, [students]);
 
-    const renderItem = ({item: student}) => (
+    const renderStudent = ({item: student}) => (
         <View style={styles.container}>
             <Pressable style={styles.box} onPress={() => {
                 navigation.navigate('Student Info', {student: student})
@@ -48,10 +48,10 @@ export default function StudentsScreen({navigation}) {
             <FlatList
                 contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}
                 data={students}
-                renderItem={renderItem}
+                renderItem={renderStudent}
                 keyExtractor={(item, index) => index.toString()}
             />
-            <Pressable style={styles.btn} onPress={() => navigation.navigate('Add Student')}>
+            <Pressable style={[styles.btn, {backgroundColor:'#57c926'}]} onPress={() => navigation.navigate('Add Student')}>
                 <AntDesign name="adduser" size={26} color="white"/>
             </Pressable>
         </View>
