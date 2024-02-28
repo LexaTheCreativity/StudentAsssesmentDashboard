@@ -10,7 +10,7 @@ export default function StudentsScreen({navigation}) {
     const [students, setStudents] = useState<StudentType[]>([StudentTypeDefault]);
 
     useEffect(() => {
-        const fetch = async () => {
+        const fetchStudents = async () => {
             const collectionRef = collection(db, 'students2');
             const documentsSnap = await getDocs(collectionRef);
 
@@ -26,7 +26,7 @@ export default function StudentsScreen({navigation}) {
             })));
         };
 
-        fetch().then().catch(() => {
+        fetchStudents().then().catch(() => {
             console.log('Error fetching data.')
         });
     }, [students]);
@@ -34,7 +34,7 @@ export default function StudentsScreen({navigation}) {
     const renderStudent = ({item: student}) => (
         <View style={styles.container}>
             <Pressable style={styles.box} onPress={() => {
-                navigation.navigate('Student Info', {student: student})
+                navigation.navigate('Student Details', {student: student})
             }}>
                 <Text style={styles.text}>
                     {student.lName}, {student.fName}

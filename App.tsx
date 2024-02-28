@@ -5,8 +5,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./Screens/HomeScreen";
 import StudentsScreen from "./Screens/StudentsScreen";
 import CoursesScreen from "./Screens/CoursesScreen";
-import InfoScreen from "./Screens/InfoScreen";
+import DetailsScreen from "./Screens/DetailsScreen";
 import CreateScreen from "./Screens/CreateScreen";
+import EditScreen from "./Screens/EditScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,9 +21,11 @@ export default function App() {
             {}
             <Stack.Screen name="Courses" component={CoursesScreen}/>
             {}
-            <Stack.Screen name="Student Info" component={InfoScreen}/>
+            <Stack.Screen name="Student Details" component={DetailsScreen}/>
             {}
             <Stack.Screen name="Add Student" component={CreateScreen}/>
+            {}
+            <Stack.Screen name="Edit Student" component={EditScreen}/>
             {}
         </Stack.Navigator>
       </NavigationContainer>

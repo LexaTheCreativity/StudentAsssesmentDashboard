@@ -1,14 +1,15 @@
 import {Alert, Pressable, Text, TextInput, View} from "react-native";
-import {StudentType, StudentTypeDefault} from "../studentType";
-import {useState} from "react";
 import {styles} from "../styles";
-import {doc, setDoc} from 'firebase/firestore';
-import {db} from '../firebaseConfig';
+import {useState} from "react";
+import {StudentType, StudentTypeDefault} from "../studentType";
+import {deleteDoc, doc, setDoc} from "firebase/firestore";
+import {db} from "../firebaseConfig";
 
-export default function CreateScreen({navigation}) {
-    const [student, setStudent] = useState<StudentType>(StudentTypeDefault);
+export default function EditScreen({navigation, route})
+{
+    const [student, setStudent] = useState<StudentType>(route.params.student);
 
-    const handleAdd = async () => {
+    const handleEdit = async () => {
         try
         {
             await setDoc(doc(db, 'students2', student.id), {
@@ -20,16 +21,16 @@ export default function CreateScreen({navigation}) {
                 fName: student.fName,
                 lName: student.lName
             });
-            Alert.alert('Success', 'Student added successfully!');
-            console.log('Added student: ', student);
+            Alert.alert('Success', 'Student edited successfully!');
+            console.log('Edited student: ', student);
         }
         catch (error)
         {
-            Alert.alert('Error', 'Failed to add student!');
-            console.error('Failed to add student: ', student);
+            Alert.alert('Error', 'Failed to edit student!');
+            console.error('Failed to edit student: ', student);
         }
 
-        navigation.goBack();
+        navigation.navigate('Students');
     };
 
     const setScore = (text: string) => {
@@ -40,13 +41,6 @@ export default function CreateScreen({navigation}) {
 
     return (
         <View style={styles.container}>
-            <TextInput
-                style={styles.input}
-                placeholder="Student ID"
-                placeholderTextColor={'#f0ca84'}
-                value={student.id}
-                onChangeText={(text) => setStudent({ ...student, id: text })}
-            />
             <TextInput
                 style={styles.input}
                 placeholder="First name"
@@ -97,9 +91,9 @@ export default function CreateScreen({navigation}) {
                 value={student.Grade}
                 onChangeText={(text) => setStudent({...student, Grade: text})}
             />
-            <Pressable style={[styles.box, {backgroundColor: '#1ebeeb'}]} onPress={handleAdd}>
+            <Pressable style={[styles.box, {backgroundColor: '#1ebeeb'}]} onPress={handleEdit}>
                 <Text style={styles.text}>Submit</Text>
             </Pressable>
         </View>
-    );
+    )
 }
