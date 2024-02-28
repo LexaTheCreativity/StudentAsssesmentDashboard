@@ -16,10 +16,7 @@ export default function StudentsScreen({navigation}) {
 
             setStudents(documentsSnap.docs.map((entry) => ({
                 id: entry.id,
-                DOB: entry.data().DOB.toDate().toLocaleString(
-                    'en-GB', {
-                        month: "short", day: "numeric", year: "numeric"
-                    }),
+                DOB: entry.data().DOB,
                 Grade: entry.data().Grade,
                 Score: entry.data().Score,
                 classID: entry.data().classID,

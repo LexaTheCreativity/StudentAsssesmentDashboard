@@ -1,14 +1,21 @@
 import {Pressable, Text, TextInput, View} from "react-native";
 import {StudentType, StudentTypeDefault} from "../studentType";
-import {useState} from "react";
+import {SetStateAction, useEffect, useState} from "react";
 import {styles} from "../styles";
 
-export default function CreateScreen()
-{
+export default function CreateScreen({navigation, route}) {
     const [student, setStudent] = useState<StudentType>(StudentTypeDefault);
 
     const handleAdd = () => {
-        console.log('Saved student: ', student);
+        console.log('Saved student DOB: ', student.DOB.toLocaleString());
+
+        navigation.navigate('Students');
+    };
+
+    const handleNumericInput = (text: string) => {
+        const numericText = text.replace(/[^0-9]/g, '');
+        const numeric = parseInt(numericText, 10);
+        setStudent({...student, Score: numeric});
     };
 
     return (
@@ -31,17 +38,32 @@ export default function CreateScreen()
                 style={styles.input}
                 placeholder="Date of birth"
                 placeholderTextColor={'#f0ca84'}
-                value={student.lName}
-                onChangeText={(text) => setStudent({ ...student, lName: text })}
+                value={student.DOB}
+                onChangeText={(text) => setStudent({ ...student, DOB: text })}
             />
             <TextInput
                 style={styles.input}
-                placeholder="Date of birth"
+                placeholder="Class ID"
                 placeholderTextColor={'#f0ca84'}
-                value={student.lName}
-                onChangeText={(text) => setStudent({ ...student, lName: text })}
+                value={student.classID}
+                onChangeText={(text) => setStudent({ ...student, classID: text })}
             />
-            <Pressable style={styles.box} onPress={() => {handleAdd}}>
+            <TextInput
+                style={styles.input}
+                placeholder="Class Name"
+                placeholderTextColor={'#f0ca84'}
+                value={student.className}
+                onChangeText={(text) => setStudent({ ...student, className: text })}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Score"
+                keyboardType={'numeric'}
+                placeholderTextColor={'#f0ca84'}
+                value={student.Score.toString()}
+                onChangeText={(text) => handleNumericInput(text)}
+            />
+            <Pressable style={styles.box} onPress={handleAdd}>
                 <Text style={styles.text}>Submit</Text>
             </Pressable>
         </View>

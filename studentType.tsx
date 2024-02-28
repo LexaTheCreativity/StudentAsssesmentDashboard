@@ -1,7 +1,8 @@
+import {DateType} from "react-native-ui-datepicker";
 
 type StudentType = {
     id: string,
-    DOB: Date,
+    DOB: string,
     Grade: string,
     Score: number,
     classID: string,
@@ -12,7 +13,7 @@ type StudentType = {
 
 const StudentTypeDefault: StudentType = {
     id: "",
-    DOB: new Date(),
+    DOB: "",
     Grade: "",
     Score: 0,
     classID: "",

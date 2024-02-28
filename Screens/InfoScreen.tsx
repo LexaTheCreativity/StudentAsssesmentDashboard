@@ -12,7 +12,7 @@ export default function InfoScreen({route})
                 <Text style={styles.text}>Name: {student.lName}, {student.fName}</Text>
             </View>
             <View style={styles.box}>
-                <Text style={styles.text}>Date of birth: {student.DOB.toString()}</Text>
+                <Text style={styles.text}>Date of birth: {student.DOB}</Text>
             </View>
             <View style={styles.box}>
                 <Text style={styles.text}>Class Code: {student.classID}</Text>
