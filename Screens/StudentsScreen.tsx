@@ -26,9 +26,7 @@ export default function StudentsScreen({navigation}) {
             })));
         };
 
-        fetchStudents().then().catch(() => {
-            console.log('Error fetching data.')
-        });
+        fetchStudents().then().catch(() => { console.error('Error fetching data.') });
     }, [students]);
 
     const renderStudent = ({item: student}) => (
