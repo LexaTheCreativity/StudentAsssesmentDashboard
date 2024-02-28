@@ -1,11 +1,10 @@
 import {FlatList, Pressable, Text, View} from "react-native";
 import {styles} from "../styles";
 import {useEffect, useState} from "react";
-import {collection, getDocs, query, where} from "firebase/firestore";
+import {collection, getDocs} from "firebase/firestore";
 import {db} from "../firebaseConfig";
-import {AntDesign} from "@expo/vector-icons";
 
-export default function CoursesScreen()
+export default function CoursesScreen({navigation})
 {
     const [courses, setCourses] = useState<string[]>([""]);
 
@@ -24,7 +23,7 @@ export default function CoursesScreen()
 
     const renderCourse = ({item: course}) => (
         <View style={styles.container}>
-            <Pressable style={styles.box}>
+            <Pressable style={styles.box} onPress={() => {navigation.navigate('Grades', {course})}}>
                 <Text style={styles.text}>
                     {course}
                 </Text>

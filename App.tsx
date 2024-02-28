@@ -8,6 +8,8 @@ import CoursesScreen from "./Screens/CoursesScreen";
 import DetailsScreen from "./Screens/DetailsScreen";
 import CreateScreen from "./Screens/CreateScreen";
 import EditScreen from "./Screens/EditScreen";
+import ChartScreen from "./Screens/ChartScreen";
+import {Chart} from "chart.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +28,8 @@ export default function App() {
             <Stack.Screen name="Add Student" component={CreateScreen}/>
             {}
             <Stack.Screen name="Edit Student" component={EditScreen}/>
+            {}
+            <Stack.Screen name="Grades" component={ChartScreen}/>
             {}
         </Stack.Navigator>
       </NavigationContainer>
