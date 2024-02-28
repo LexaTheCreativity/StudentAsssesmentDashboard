@@ -23,7 +23,7 @@ export default function CoursesScreen({navigation})
 
     const renderCourse = ({item: course}) => (
         <View style={styles.container}>
-            <Pressable style={styles.box} onPress={() => {navigation.navigate('Grades', {course})}}>
+            <Pressable style={styles.box} onPress={() => {navigation.navigate('Grades', {course: course})}}>
                 <Text style={styles.text}>
                     {course}
                 </Text>

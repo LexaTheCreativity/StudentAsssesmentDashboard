@@ -12,7 +12,7 @@ export default function ChartScreen({navigation, route})
 
     useEffect(() => {
         const fetchData = async () => {
-            const colRef = collection(db, 'students');
+            const colRef = collection(db, 'students2');
             const q = query(colRef, where("className", "==", courseName));
             const snapshots = await getDocs(q);
             const gradeCount = {A: 0, B: 0, C: 0, D: 0, E: 0, F: 0};
